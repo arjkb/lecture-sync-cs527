@@ -21,5 +21,8 @@ def main():
             already_downloaded.add(line.strip())
     print(len(already_downloaded),already_downloaded)
 
+    yet_to_download = lecture_links - already_downloaded
+    print(len(yet_to_download), yet_to_download)
+
 if __name__ == '__main__':
     main()
