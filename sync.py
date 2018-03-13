@@ -8,11 +8,12 @@ def main():
 
     soup = BeautifulSoup(r.content, 'html.parser')
 
+    lecture_links = set()
     for link in soup.find_all('a'):
         href = link.get('href')
         if href.startswith('lec/'):
-            print(base_url + href)
-
+            lecture_links.add(base_url + href)
+    print(lecture_links)
 
 
 
