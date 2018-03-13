@@ -1,5 +1,6 @@
 import requests
 import wget
+import sys
 from bs4 import BeautifulSoup
 
 def main():
@@ -7,6 +8,10 @@ def main():
     fname_downloaded_list = '.downloaded.txt'
     r = requests.get(base_url)
     # print(r.status_code)
+
+    if r.status_code != 200:
+        print("Could not retrieve webpage: {}.\nExiting.".format(base_url))
+        sys.exit(1)
 
     soup = BeautifulSoup(r.content, 'html.parser')
 
