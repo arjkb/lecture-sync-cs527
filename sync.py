@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 def main():
     base_url = 'http://www.cs.unm.edu/~saia/classes/527-s18/'
     r = requests.get(base_url)
-    print(r.status_code)
+    # print(r.status_code)
 
     soup = BeautifulSoup(r.content, 'html.parser')
 
@@ -14,7 +14,7 @@ def main():
         href = link.get('href')
         if href.startswith('lec/'):
             lecture_links.add(base_url + href)
-    print(len(lecture_links), lecture_links)
+    # print(len(lecture_links), lecture_links)
 
     already_downloaded = set()
     try:
@@ -25,10 +25,10 @@ def main():
         open('.downloaded.txt', 'w+')
         print("Creating file .downloaded.txt")
 
-    print(len(already_downloaded),already_downloaded)
+    # print(len(already_downloaded),already_downloaded)
 
     yet_to_download = lecture_links - already_downloaded
-    print(len(yet_to_download), yet_to_download)
+    # print(len(yet_to_download), yet_to_download)
 
     # download the lectures, and update .downloaded.txt
     with open('.downloaded.txt', 'a') as f:
