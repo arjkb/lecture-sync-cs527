@@ -1,4 +1,5 @@
 import requests
+import wget
 from bs4 import BeautifulSoup
 
 def main():
@@ -23,6 +24,10 @@ def main():
 
     yet_to_download = lecture_links - already_downloaded
     print(len(yet_to_download), yet_to_download)
+
+    for url in yet_to_download:
+        filename = wget.download(url)
+        print(" Downloaded ", filename)
 
 if __name__ == '__main__':
     main()
