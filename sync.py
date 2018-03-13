@@ -17,9 +17,14 @@ def main():
     print(len(lecture_links), lecture_links)
 
     already_downloaded = set()
-    with open('.downloaded.txt', 'r') as f:
-        for line in f:
-            already_downloaded.add(line.strip())
+    try:
+        with open('.downloaded.txt', 'r') as f:
+            for line in f:
+                already_downloaded.add(line.strip())
+    except FileNotFoundError:
+        open('.downloaded.txt', 'w+')
+        print("Creating file .downloaded.txt")
+
     print(len(already_downloaded),already_downloaded)
 
     yet_to_download = lecture_links - already_downloaded
