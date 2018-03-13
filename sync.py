@@ -15,7 +15,11 @@ def main():
             lecture_links.add(base_url + href)
     print(lecture_links)
 
-
+    already_downloaded = set()
+    with open('.downloaded.txt', 'r') as f:
+        for line in f:
+            already_downloaded.add(line.strip())
+    print(already_downloaded)
 
 if __name__ == '__main__':
     main()
