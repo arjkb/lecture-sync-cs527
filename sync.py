@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 
 def main():
     base_url = 'http://www.cs.unm.edu/~saia/classes/527-s18/'
+    fname_downloaded_list = '.downloaded.txt'
     r = requests.get(base_url)
     # print(r.status_code)
 
@@ -18,12 +19,12 @@ def main():
 
     already_downloaded = set()
     try:
-        with open('.downloaded.txt', 'r') as f:
+        with open(fname_downloaded_list, 'r') as f:
             for line in f:
                 already_downloaded.add(line.strip())
     except FileNotFoundError:
-        open('.downloaded.txt', 'w+')
-        print("Creating file .downloaded.txt")
+        open(fname_downloaded_list, 'w+')
+        print("Creating file {}".format(fname_downloaded_list))
 
     # print(len(already_downloaded),already_downloaded)
 
@@ -31,7 +32,7 @@ def main():
     # print(len(yet_to_download), yet_to_download)
 
     # download the lectures, and update .downloaded.txt
-    with open('.downloaded.txt', 'a') as f:
+    with open(fname_downloaded_list, 'a') as f:
         for url in yet_to_download:
             filename = wget.download(url)
             print(" Downloaded ", filename)
