@@ -13,13 +13,13 @@ def main():
         href = link.get('href')
         if href.startswith('lec/'):
             lecture_links.add(base_url + href)
-    print(lecture_links)
+    print(len(lecture_links), lecture_links)
 
     already_downloaded = set()
     with open('.downloaded.txt', 'r') as f:
         for line in f:
             already_downloaded.add(line.strip())
-    print(already_downloaded)
+    print(len(already_downloaded),already_downloaded)
 
 if __name__ == '__main__':
     main()
